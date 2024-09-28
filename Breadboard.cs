@@ -144,7 +144,7 @@ public class Breadboard : MonoBehaviour
             if (node.ground)
             {
                 // this is a valid path! insert into paths to be returned
-                List<Edge> reversed_path = new List<Edge>();
+                List<Node> reversed_path = new List<Node>();
 
                 // add the ground node as the last node
                 reversed_path.Add(node);
@@ -168,7 +168,7 @@ public class Breadboard : MonoBehaviour
                 reversed_path.Reverse();
 
                 // convert the path of Nodes to a path of Edges (i.e. pins to components)
-                List<List<Edge>> path_of_components = pins_to_components(reversed_path);
+                List<Edge> path_of_components = pins_to_components(reversed_path);
 
                 // TODO: determine if this deep copies the path
                 paths.Add(path_of_components);
@@ -192,9 +192,9 @@ public class Breadboard : MonoBehaviour
     }
 
     // helper function for dfs()
-    List<Edge> nodes_to_edges(List<List<Node>> nodes)
+    List<Edge> nodes_to_edges(List<Node> nodes)
     {
-        List<Edge> components = new List<List<Edge>>();
+        List<Edge> components = new List<Edge>();
 
         Node source = nodes[0];
         Node target = nodes[1];
